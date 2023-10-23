@@ -1,9 +1,10 @@
 package slices
 
-// Return first element for first match with prediction
-
 type CompareblePrediction[T comparable] func(el T, index int) bool
+type DeterminablePrediction[T any, X any] func(el T, index int) X
+type Looper[T any] func(el T, index int) error
 
+// Return first element for first match with prediction
 func Find[T comparable](
 	slice *[]T,
 	prediction CompareblePrediction[T],
@@ -33,7 +34,6 @@ func Filter[T comparable](
 }
 
 // convert slice to given type of slice
-type DeterminablePrediction[T any, X any] func(el T, index int) X
 
 func Map[T any, X any](slice *[]T, prediction DeterminablePrediction[T, X]) []X {
 	determinded := new([]X)
@@ -42,8 +42,6 @@ func Map[T any, X any](slice *[]T, prediction DeterminablePrediction[T, X]) []X 
 	}
 	return *determinded
 }
-
-type Looper[T any] func(el T, index int) error
 
 func Foreach[T any](el *[]T, loop Looper[T]) error {
 	for index, item := range *el {

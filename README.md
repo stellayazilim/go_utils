@@ -102,6 +102,34 @@ func Map[T any, X any](slice *[]T, prediction DeterminablePrediction[T, X]) []X
     // [{mars} {venus}]
 ```
 
+
+### Foreach
+loop through array
+
+
+```go
+func Foreach[T any](el *[]T, loop Looper[T]) error
+```
+To break loop return an error
+
+
+```go
+    type planet struct {
+        name string
+    }
+
+    s := []planet{{ name: "mars" }, { name: "venus" }}
+
+    planets = slices.Foreach(&s, func(item name, index int) error {
+        
+        fmt.Println(item.name)
+        return nil
+	})
+    // mars
+    // venus
+```
+
+
 ### prediction types
 
 ```go
@@ -111,3 +139,10 @@ type CompareblePrediction[T comparable] func(el T, index int) bool
 ```go
 type DeterminablePrediction[T any, X any] func(el T, index int) X
 ```
+
+```go
+type Looper[T any] func(el T, index int) error
+```
+
+# License
+[GNU AFFERO GENERAL PUBLIC LICENSE](./LICENSE)
