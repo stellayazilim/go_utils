@@ -120,7 +120,7 @@ To break loop return an error
 
     s := []planet{{ name: "mars" }, { name: "venus" }}
 
-    planets = slices.Foreach(&s, func(item name, index int) error {
+    planets = slices.Foreach(&s, func(item planet, index int) error {
         
         fmt.Println(item.name)
         return nil
