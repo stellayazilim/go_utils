@@ -145,4 +145,4 @@ type Looper[T any] func(el T, index int) error
 ```
 
 # License
-[GNU AFFERO GENERAL PUBLIC LICENSE](./LICENSE)
+[MIT](./LICENSE)
